@@ -8,15 +8,21 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
     <script src='formComponent.js'></script>
+    <script src='submitComponent.js'></script>
 
 <style>
 #formPanel {
     background-color: burlywood;
 }
+
+#submitPanel {
+    background-color: cadetblue;
+}
 </style>
 
     <script>
         function init() {
+
             var formComponent = new FormComponent();
             formComponent.init(document.getElementById('formPanel'), 'localhost:3333/backendApi');
             formComponent.render();
@@ -26,6 +32,20 @@
                 lastName: 'Smith'
             })
             console.log(formComponent.getData());
+
+
+            var submitComponent = new SubmitComponent();
+            submitComponent.init(document.getElementById('submitPanel'), 'localhost:3333/backendApi', function callback(params) {
+                return formComponent.getData();
+            });
+            submitComponent.render();
+
+            formComponent.fillWithData({
+                firstName: 'John',
+                lastName: 'Smith'
+            })
+            console.log(formComponent.getData());
+
         }
     </script>
 
@@ -34,6 +54,7 @@
 <body onload="init()">
     <p>New customer</p>
     <div id='formPanel'></div>
+    <div id='submitPanel'></div>
 </body>
 
 </html>
