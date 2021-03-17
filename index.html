@@ -42,14 +42,12 @@
                 return formComponent.getData();
             });
             submitComponent.render();
-
             
             var copyPasteComponent  = new CopyPasteComponent()
             copyPasteComponent.init(document.getElementById('copyPastePanel'), 'localhost:3333/backendApi', function dataChangedFunction(newData) {
                 formComponent.fillWithData(newData);
             });
             copyPasteComponent.render();
-
 
             var randomizeComponent  = new RandomizeComponent()
             randomizeComponent.init(document.getElementById('randomizePanel'), 'localhost:3333/backendApi', function dataChangedFunction(newData) {
