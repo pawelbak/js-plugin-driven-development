@@ -10,6 +10,7 @@
     <script src='formComponent.js'></script>
     <script src='submitComponent.js'></script>
     <script src='copyPasteComponent.js'></script>
+    <script src='randomizeComponent.js'></script>
 
 <style>
 #formPanel {
@@ -61,6 +62,13 @@
                 formComponent.fillWithData(newData);
             });
             copyPasteComponent.render();
+
+
+            var randomizeComponent  = new RandomizeComponent()
+            randomizeComponent.init(document.getElementById('randomizePanel'), 'localhost:3333/backendApi', function dataChangedFunction(newData) {
+                formComponent.fillWithData(newData);
+            });
+            randomizeComponent.render();
         }
     </script>
 
