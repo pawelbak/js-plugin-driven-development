@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>New customer</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
+    <script src='formComponent.js'></script>
+
+<style>
+#formPanel {
+    background-color: burlywood;
+}
+</style>
+
+    <script>
+        function init() {
+            var formComponent = new FormComponent();
+            formComponent.init(document.getElementById('formPanel'), 'localhost:3333/backendApi');
+            formComponent.render();
+
+            formComponent.fillWithData({
+                firstName: 'John',
+                lastName: 'Smith'
+            })
+            console.log(formComponent.getData());
+        }
+    </script>
+
+</head>
+
+<body onload="init()">
+    <p>New customer</p>
+    <div id='formPanel'></div>
+</body>
+
+</html>
