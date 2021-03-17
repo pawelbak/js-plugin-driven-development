@@ -9,6 +9,7 @@
     <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
     <script src='formComponent.js'></script>
     <script src='submitComponent.js'></script>
+    <script src='copyPasteComponent.js'></script>
 
 <style>
 #formPanel {
@@ -17,6 +18,14 @@
 
 #submitPanel {
     background-color: cadetblue;
+}
+
+#copyPastePanel {
+    background-color: darkgrey;
+}
+
+#randomizePanel {
+    background-color: goldenrod;
 }
 </style>
 
@@ -27,25 +36,31 @@
             formComponent.init(document.getElementById('formPanel'), 'localhost:3333/backendApi');
             formComponent.render();
 
-            formComponent.fillWithData({
-                firstName: 'John',
-                lastName: 'Smith'
-            })
-            console.log(formComponent.getData());
+            // formComponent.fillWithData({
+            //     firstName: 'John',
+            //     lastName: 'Smith'
+            // })
+            // console.log(formComponent.getData());
 
 
             var submitComponent = new SubmitComponent();
-            submitComponent.init(document.getElementById('submitPanel'), 'localhost:3333/backendApi', function callback(params) {
+            submitComponent.init(document.getElementById('submitPanel'), 'localhost:3333/backendApi', function getDataFunction(params) {
                 return formComponent.getData();
             });
             submitComponent.render();
 
-            formComponent.fillWithData({
-                firstName: 'John',
-                lastName: 'Smith'
-            })
-            console.log(formComponent.getData());
+            // formComponent.fillWithData({
+            //     firstName: 'John',
+            //     lastName: 'Smith'
+            // })
+            // console.log(formComponent.getData());
 
+
+            var copyPasteComponent  = new CopyPasteComponent()
+            copyPasteComponent.init(document.getElementById('copyPastePanel'), 'localhost:3333/backendApi', function dataChangedFunction(newData) {
+                formComponent.fillWithData(newData);
+            });
+            copyPasteComponent.render();
         }
     </script>
 
@@ -55,6 +70,8 @@
     <p>New customer</p>
     <div id='formPanel'></div>
     <div id='submitPanel'></div>
+    <div id='copyPastePanel'></div>
+    <div id='randomizePanel'></div>
 </body>
 
 </html>
