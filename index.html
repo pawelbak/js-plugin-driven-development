@@ -37,26 +37,13 @@
             formComponent.init(document.getElementById('formPanel'), 'localhost:3333/backendApi');
             formComponent.render();
 
-            // formComponent.fillWithData({
-            //     firstName: 'John',
-            //     lastName: 'Smith'
-            // })
-            // console.log(formComponent.getData());
-
-
             var submitComponent = new SubmitComponent();
             submitComponent.init(document.getElementById('submitPanel'), 'localhost:3333/backendApi', function getDataFunction(params) {
                 return formComponent.getData();
             });
             submitComponent.render();
 
-            // formComponent.fillWithData({
-            //     firstName: 'John',
-            //     lastName: 'Smith'
-            // })
-            // console.log(formComponent.getData());
-
-
+            
             var copyPasteComponent  = new CopyPasteComponent()
             copyPasteComponent.init(document.getElementById('copyPastePanel'), 'localhost:3333/backendApi', function dataChangedFunction(newData) {
                 formComponent.fillWithData(newData);
